@@ -1,18 +1,17 @@
 ### Exchange Trade Quote
 
-   自主管理交易所币种 Binance Bittrex
+    Binance 现货 期货 交易订单 账户余额
 
-### 执行后台任务 同步行情
-
-    bundle exec rake daemon:quarter_quote:start RAILS_ENV=production
+### 部署命令安装依赖
+    apt-get install nodejs npm
+    bundle exec rake assets:precompile RAILS_ENV=production
+    bundle exec rake db:create RAILS_ENV=production
+    bundle exec rake db:migrate RAILS_ENV=production
 
 ### 配置参数
 
-  完善 config/settings.rb.example 相应的信息，变更为 config/settings.rb
-
+    补全 config/settings.yml.example => config/settings.yml
 
 ### 定时任务
 
-  */5 * * * * curl http://example.com/api/tickers/fetch &>/dev/null
-
-  0 * * * * curl http://example.com/api/tickers/daemon_launch &>/dev/null
+    bundle exec whenever --update-crontab
